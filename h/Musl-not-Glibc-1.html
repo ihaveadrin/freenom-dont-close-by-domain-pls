@@ -1,0 +1,27 @@
+<html !doctype>
+	<head>
+		<title>ebh - Musl not Glibc 1</title>
+		<link rel="stylesheet" type="text/css" href="theme.css"> 
+	</head>
+	<body>
+<p>A random day in May, coming back from Milan after a fine Saturday out
+hanging with some friends, I found my PC dead.
+A month later, bought a new one from Amazon and had it delivered from
+Amazon.it, I upgraded to W10 and downloaded Void Linux for dual booting
+it. I dunno why but I downloaded a musl-built iso. Damn it!
+It's cool and all but leads to lots of struggle, because of compatibility
+issues seldom mentioned in musl faqs and guides... No telegram desktop,
+unless you build the sources and its megabytes of dependencies...
+Obviously anything but qt5 isn't in Void repos.</p>
+<p>Enough introduction, first quirk in Musl: building a scraper suite
+written in C, <a href="https://www.w3.org/Tools/HTML-XML-utils/">html-xml-utils</a>, <code>make</code> gives an error.
+The compiler can't find <em>optreset</em>, part of GNU getopt but not present
+neither in musl getopt nor in BSD getopt afaik.
+The solution for this is
+<code>#undef HAVE_GETOPT_OPTRESET</code>
+into config.h for autotools autolib automake autostallman-based codebases,
+after having run configure.</p>
+	<br>
+	<a href="index.html">Back</a>
+	</body>
+</html>
